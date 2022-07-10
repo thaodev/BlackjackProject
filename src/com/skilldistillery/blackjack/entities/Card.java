@@ -38,6 +38,13 @@ public class Card {
 		return rank.getValue();
 	}
 	
+	public int getSecondValue() {
+		return rank.getSecondValue();
+	}
+	
+	public Rank getRank() {
+		return rank;
+	}
 	
 	
 	
