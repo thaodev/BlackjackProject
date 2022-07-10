@@ -15,8 +15,8 @@ public class Player {
 		
 	}
 	
-	public void checkDeckSize() {
-		System.out.println("Player currently has " + hand.deckSize() + " cards.");
+	public int checkDeckSize() {
+		return hand.deckSize();
 	}	
 	public void displayCards() {
 		int sum = 0;
