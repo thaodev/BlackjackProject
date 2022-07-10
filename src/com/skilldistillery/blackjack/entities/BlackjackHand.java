@@ -13,17 +13,25 @@ public class BlackjackHand extends Hand{
 	public int getHandValue() {
 		int sum = 0;
 		for (Card card : cards) {
-			sum += card.getValue();
+			if(card.getRank() == Rank.ACE && sum > 10) {
+				sum += card.getSecondValue();
+			} else {
+				sum += card.getValue();
+			}
 		}
 		return sum;
 	}
 	
 	public boolean isBlackjack() {
-		if (getHandValue() == 21) {
-			return true;
+		boolean isHandBlackjack = true;
+		for (Card card : cards) {
+		if (card.getRank() == Rank.ACE && getHandValue() == 21) {
+			isHandBlackjack = true;
 		} else {
-			return false;
+			isHandBlackjack =  false;
 		}
+		}
+		return isHandBlackjack;
 		
 	}
 	
