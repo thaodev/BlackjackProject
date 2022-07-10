@@ -19,16 +19,16 @@ public class Player {
 		return hand.deckSize();
 	}	
 	public void displayCards() {
-		int sum = 0;
 		List<Card> cardsInHand = new ArrayList<>();
 		cardsInHand.addAll(hand.displayCards());
 		for (int i = 0; i < cardsInHand.size(); i++) {
-			sum += cardsInHand.get(i).getValue();
 			System.out.println(cardsInHand.get(i));
 		}
-		System.out.println("Total current value of player's cards is " + sum);
 	}
-	
+
+	public List<Card> cardsInHand() {
+		return hand.displayCards();
+	}
 	public int getHandValue() {
 		int score = 0;
 		score = hand.getHandValue();
