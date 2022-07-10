@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlackjackHand extends Hand{
-	//private List<Card> cardsInHand;
-	
-	
 
 	public BlackjackHand() {
 		cards = new ArrayList<>();
