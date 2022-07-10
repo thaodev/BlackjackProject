@@ -23,6 +23,9 @@ public class Deck {
 		return deck;
 	}
 	
+	public int deckSize() {
+		return deck.size();
+	}
 	
 	
 	public Card dealCard() {
