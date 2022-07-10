@@ -21,37 +21,42 @@ public class BlackJackApp {
 		deck.shuffleCard();
 		Player player = new Player();
 		Dealer dealer = new Dealer();
+		
+		boolean playerRound = true;
+		boolean dealerRound = true;
+
 
 		// Start dealing
 		// Player gets two cards
 		player.hit(deck.dealCard());
 		player.hit(deck.dealCard());
-
+		
+		
 		// Dealer gets two card
 		dealer.hit(deck.dealCard());
 		dealer.hit(deck.dealCard());
-		boolean endRound = false;
-
-		/* Player's turn */
+		
+		
 
 		// Dealer's visible cards
-		dealer.checkDeckSize();
+		System.out.println("Dealer currently has " + dealer.checkDeckSize() +" cards");
 		dealer.displayCards();
-		if (dealer.getHandValue() > 17) {
-			System.out.println("Dealer doesn't allow to take any more card per the house's rule!!!");
-		}
+
+		
 		System.out.println();
 
 		// Player's cards
-		player.checkDeckSize();
+		System.out.println("Player currently has " + player.checkDeckSize() +" cards");
 		player.displayCards();
+		String hitOrStayDecision = "";
 
-		while (!endRound) {
+		/* Player's turn */
+		while (playerRound) {
 			System.out.println();
-			String hitOrStayDecision = "";
-
-			if (!dealer.isBust() && !dealer.isBlackjack()) {
-
+			if (player.getHandValue() == 21) {
+				playerRound = false;
+			}
+			else if (!dealer.isBust() && !dealer.isBlackjack()) {
 				System.out.println("Player's move: (H or S)");
 				hitOrStayDecision = sc.nextLine();
 				if (hitOrStayDecision.toLowerCase().equals("hit") || hitOrStayDecision.toLowerCase().equals("h")) {
@@ -61,50 +66,63 @@ public class BlackJackApp {
 					player.checkDeckSize();
 					if (player.isBust()) {
 						System.out.println("Player's current score is " + player.getHandValue() + ". You are busted");
-						endRound = true;
+						playerRound = false;
+						dealerRound = false;
 					} else {
 						player.displayCards();
 					}
 				} else {
 					System.out.println("Player chose to stay. Nothing change in your score!");
+					playerRound = false;
 
 				}
 				if (player.isBlackjack()) {
-					endRound = true;
+					playerRound = false;
 				}
 			}
-
-			/* Dealer's turn */
-			System.out.println();
-			if (!player.isBust() && dealer.getHandValue() < 17) {
+		}
+		/* Dealer's turn */
+		System.out.println();
+		while (dealerRound) {
+			if (dealer.getHandValue() > 17) {
+				System.out.println("Dealer isn't allowed to take any more card per the house's rule!!!");
+				dealerRound = false;
+			} else if (dealer.getHandValue() == 21) {
+				dealerRound = false;
+			} else if (!player.isBust()) {
 				System.out.println("Dealer's move: (H or S)");
 				hitOrStayDecision = sc.nextLine();
 				if (hitOrStayDecision.toLowerCase().equals("hit") || hitOrStayDecision.toLowerCase().equals("h")) {
 					Card cardDrawn = deck.dealCard();
 					dealer.hit(cardDrawn);
-					System.out.println("Player draw a: " + cardDrawn + " - value of " + cardDrawn.getValue());
+					System.out.println("Dealer draw a: " + cardDrawn + " - value of " + cardDrawn.getValue());
 					dealer.checkDeckSize();
 					if (dealer.isBust()) {
-						System.out.println("Player's current score is " + dealer.getHandValue() + ". You are busted");
-						endRound = true;
+						System.out.println("Dealer's current score is " + dealer.getHandValue() + ". You are busted");
+						dealerRound = false;
 
 					} else {
 						dealer.displayCards();
 					}
 				} else {
 					System.out.println("Dealer chose to stay. Nothing change in your score!");
-
+					dealerRound = false;
+				}
+				if (dealer.isBlackjack()) {
+					dealerRound = false;
 				}
 			}
 		}
 		System.out.println("=====================================");
 		System.out.println("OUTCOME OF THE GAME");
-		dealer.checkDeckSize();
+		System.out.println("-------------------");
+		System.out.println("Dealer has "+ dealer.checkDeckSize() + " cards.");
 		System.out.println("Dealer's score is: " + dealer.getHandValue());
 		System.out.println();
-		player.checkDeckSize();
-		//player.displayCards();
-		System.out.println("**************************************");
+		
+		System.out.println("Player has "+ player.checkDeckSize() + " cards.");
+		System.out.println("Player's score is: " + player.getHandValue());
+		System.out.println("***************************************");
 		if (player.isBlackjack()) {
 			System.out.println("Player is blackjack!!!!");
 		}
@@ -124,7 +142,7 @@ public class BlackJackApp {
 		} else {
 			System.out.println("Dealer is busted. Player is the winner!");
 		}
-		System.out.println("**************************************");
+		System.out.println("***************************************");
 
 	}
 
