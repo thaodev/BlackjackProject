@@ -22,16 +22,22 @@ public class Dealer {
 	public int getHandValue() {
 		return hand.getHandValue();
 	}
-	public void displayCards(){
+	public void displayCards() {
+		List<Card> cardsInHand = new ArrayList<>();
+		cardsInHand.addAll(hand.displayCards());
+		for (int i = 1; i < cardsInHand.size(); i++) {
+			System.out.println(cardsInHand.get(i));
+		}
+	}
+
+	public int getVisibleCardsValue() {
 		int sum = 0;
 		List<Card> cardsInHand = new ArrayList<>();
 		cardsInHand.addAll(hand.displayCards());
 		for (int i = 1; i < cardsInHand.size(); i++) {
 			sum += cardsInHand.get(i).getValue();
-			System.out.println(cardsInHand.get(i));
 		}
-		System.out.println("Total current value of Dealer's visible cards is " + sum);
-			
+		return sum;
 	}
 	
 	public boolean isBust() {
