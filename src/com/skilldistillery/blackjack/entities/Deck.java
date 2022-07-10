@@ -23,9 +23,7 @@ public class Deck {
 		return deck;
 	}
 	
-	public int checkDeckSize() {
-		return deck.size();
-	}
+	
 	
 	public Card dealCard() {
 		Card card = deck.remove(0);
