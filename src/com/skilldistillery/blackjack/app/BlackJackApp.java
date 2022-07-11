@@ -16,12 +16,21 @@ public class BlackJackApp {
 	}
 
 	public void launch() {
+		String blackjack =  ".-------."+ ".-------."+ "\n"+
+		         "| ** ** |" + "| ** ** |" +"\n"+
+		         "|*  *  *|" + "|*  *  *|" +"\n"+ 
+		         "| *   * |" + "| *   * |" + "\n"+ 
+		         "|   *   |" + "|   *   |" + "\n"+ 
+		         "|   B   |" + "|   J   |" + "\n"+ 
+		         "'-------'" + "'-------'";
+	
+		System.out.println(blackjack);
 
 		Deck deck = new Deck();
 		deck.shuffleCard();
-		System.out.println("---------------------");
+		System.out.println("-------------------");
 		System.out.println("| Deck's size: " + deck.deckSize()+" |");
-		System.out.println("---------------------");
+		System.out.println("-------------------");
 		Player player = new Player();
 		Dealer dealer = new Dealer();
 
@@ -50,9 +59,9 @@ public class BlackJackApp {
 		System.out.println("Player's score is " + player.getHandValue()); 
 		String hitOrStayDecision = "";
 		
-		System.out.println("---------------------");
+		System.out.println("-------------------");
 		System.out.println("| Deck's size: " + deck.deckSize()+" |");
-		System.out.println("---------------------");
+		System.out.println("-------------------");
 
 		/* Player's turn */
 		while (isPlayerRound) {
@@ -73,9 +82,9 @@ public class BlackJackApp {
 						player.hit(cardDrawn);
 						System.out.println("Player draw a: " + cardDrawn + " - value of " + cardDrawn.getValue());
 						System.out.println("Player has " + player.checkDeckSize() + " cards.");
-						System.out.println("---------------------");
+						System.out.println("-------------------");
 						System.out.println("| Deck's size: " + deck.deckSize()+" |");
-						System.out.println("---------------------");
+						System.out.println("-------------------");
 						if (player.isBust()) {
 							System.out
 									.println("Player's current score is " + player.getHandValue() + ". You are busted");
@@ -128,9 +137,9 @@ public class BlackJackApp {
 							dealer.displayCards();
 							System.out.println("Dealer's visible score is " + dealer.getVisibleCardsValue()); 
 						}
-						System.out.println("---------------------");
+						System.out.println("-------------------");
 						System.out.println("| Deck's size: " + deck.deckSize()+" |");
-						System.out.println("---------------------");
+						System.out.println("-------------------");
 					} else {
 						System.out.println("Dealer chose to stay. Nothing change in your score!");
 						isDealerRound = false;
