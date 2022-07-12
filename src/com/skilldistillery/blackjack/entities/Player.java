@@ -10,7 +10,7 @@ public class Player {
 		hand = new BlackjackHand();
 	}
 	
-	public void hit(Card card) {
+	public void receiveCard(Card card) {
 		hand.addCard(card);
 		
 	}
