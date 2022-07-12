@@ -12,12 +12,18 @@ public class Dealer {
 	}
 
 	public void hit(Card card) {
+		
 		hand.addCard(card);
 	}
 	
 	public int checkDeckSize() {
 		return hand.deckSize();
-	}	
+	}
+	
+	public Card dealerDealCard(Deck deck) {
+		Card card = deck.dealCard();
+		return card;
+	}
 	
 	public int getHandValue() {
 		return hand.getHandValue();
