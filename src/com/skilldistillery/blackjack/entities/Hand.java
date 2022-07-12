@@ -13,6 +13,11 @@ public abstract class Hand {
 	public void addCard(Card card) {
 		cards.add(card);
 	}
+	
+	public Card dealCard() {
+		Card card = cards.remove(0);
+		return card;
+	}
 	     
 	public void clear() {
 		cards.removeAll(cards);
